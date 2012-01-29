@@ -1,0 +1,23 @@
+.content {
+	
+	width: 650px;
+	margin: auto;
+}
+
+input[type="checkbox"]{
+	
+	margin: 0 2px 0 2px;
+}
+
+p{
+	text-align: center;
+	line-height: 0;
+	margin: 4px 0 2px 0;
+	padding: 0;
+}
+
+.option{
+	
+	padding: 20px;
+}
+

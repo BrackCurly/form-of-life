@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>form of life</title>
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		
+		<div class="content">
+			<h1>Form of Life</h1>
+			<form>
+				<fieldset>
+					<legend>field</legend>
+					<div id="field"></div>	
+				</fieldset>
+				<fieldset class="controls">
+					<legend>controls</legend>
+					<button id="play">pause</button>
+					<button type="reset">reset</button>
+					<button id="random">randomize</button>
+				</fieldset>
+			</form>
+			<fieldset class="controls">
+				<legend>options</legend>
+				
+				<span class="option">
+				<label for="speed">speed:</label> 
+				<select id="speed">
+					<option value="1000">1</option>
+					<option value="750">2</option>
+					<option value="500" selected>3</option>
+					<option value="250">4</option>
+					<option value="100">5</option>	
+				</select> 
+				</span>
+				
+				<span class="option">
+				<label for="ruleset">ruleset:</label>
+				<select id="ruleset">
+					<option value="23/3">Conway's Game of Life (23/3)</option>
+					<option value="1357/1357">Copyworld (1357/1357)</option>
+					<option value="3/3">3/3 World</option>
+					<option value="13/3">13/3 World</option>
+					<option value="34/3">34/3 World</option>
+					<option value="35/3">35/3 World</option>
+					<option value="2/3">2/3 World</option>
+					<option value="24/3">24/3 World</option>
+					<option value="245/3">245/3 World</option>	
+				</select> 
+				</span>
+				
+			</fieldset>
+		</div>
+				
+		<script src="src/formoflife.js"></script>
+		<script>
+			
+			window.addEventListener('load', function(){
+				
+				
+				var life = new FormOfLife('field', 37, 25);
+				
+				
+				life.randomize();
+				
+				document.getElementById('random').addEventListener('click', function(e){
+					
+					e.preventDefault();
+					life.randomize();
+					return false;
+					
+				}, false);
+				
+				document.getElementById('play').addEventListener('click', function(e){
+					
+					e.preventDefault();
+					
+					if(life.running){
+						
+						life.pause();
+						this.innerHTML = 'play';
+					}else{
+						
+						life.run();
+						this.innerHTML = 'pause';
+					}
+					
+					return false;
+				}, false);
+				
+				document.getElementById('speed').addEventListener('change', function(e){
+					
+					life.setDelay(this.value);
+					
+				}, false);
+				
+				document.getElementById('ruleset').addEventListener('change', function(e){
+					
+					console.log(this.value);
+					
+					life.setRules(this.value);
+					
+				}, false);
+				
+			
+			}, false);
+			
+		</script>
+	</body>
+</html>
